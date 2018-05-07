@@ -1,0 +1,202 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    clear: both;
+    color: white;
+}
+
+h4{
+  color: black;
+}
+
+.mySlides {
+  display: none;
+}
+
+.mySlides::after {
+  display: block;
+  position: relative;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, black 80%);
+  margin-top: -300px;
+  height: 300px;
+  width: 100%;
+  content: '';
+}
+
+/*img {
+  vertical-align: middle;
+}
+*/
+*{
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+ /*   margin: 0px;
+    padding: 0px;*/
+    box-sizing: border-box;
+}
+
+#dinnerFTW-container{
+  height: 60px;
+  width: 100%;
+    position: relative;
+    margin-top:
+}
+
+.slideshow-container{
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+}
+
+#dinnerFTWtitle{
+  padding-bottom: 20px;
+  padding-top: 70px;
+}
+
+.slideshow-container #dinnerFTWtext-container{
+  position: absolute;
+  bottom: 0;
+}
+
+#dinnerFTWtext-container{
+  height: auto;
+  width: auto;
+  margin-right: 10%;
+  margin-left: 10%;
+  padding-bottom: 30px;
+  background-color: transparent;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+.text-button {
+  color: black;
+  text-align: center;
+  padding-top: 5px;
+  font-weight: bold;
+  font-family: 'Josefin Sans', sans-serif;
+  letter-spacing: 1px;
+}
+
+
+#seasonal-container-all{
+  width: 100%;
+  height: auto;
+}
+#seasonal-container{
+  height: auto;
+  margin-left: 10%;
+  margin-right: 10%;
+  position: relative;
+}
+
+
+#seasonal-title-container{
+  width: 100%;
+  height: 100px;
+  padding-top: 30px;
+}
+
+#seasonal-title {
+  text-align: center;
+  color: black;
+  padding-bottom: 20px;
+  border-bottom: 1px solid grey;
+}
+
+#main-dishes-text{
+  color: black;
+  padding-bottom: 10px;
+}
+
+#main-dishes-container{
+  width: 850px; /*can be in percentage also.*/
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+#main-dishes-list{
+  width: auto;
+  height: auto;;
+  padding: 0;
+  list-style-type: none;
+}
+
+#main-dishes-list li {
+  display:inline-block;
+  *display:inline; /*IE7*/
+  *zoom:1; /*IE7*/
+  margin: 20px;
+}
+
+.resultItem {
+  width: 240px;
+  height: 280px;
+  border: 1px black solid;
+  position: relative;
+}
+
+.resultItem:hover {
+  cursor: pointer;
+}
+
+#resultImage {
+  width: 100%;
+  height: auto;
+}
+
+.resultTitle {
+  font-family: 'Josefin Sans', sans-serif;
+  position: absolute;
+  color: black;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+.resultItem .resultTitle {
+  position: absolute;
+}
+
+.prepTime {
+  font-family: 'Josefin Sans', sans-serif;
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 100px;
+  color: black;
+}

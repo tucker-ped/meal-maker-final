@@ -1,0 +1,418 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    clear: both;
+
+}
+.hidden{
+    position: absolute !important;
+clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+clip: rect(1px, 1px, 1px, 1px);
+}
+
+*{
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    margin: 0px;
+    padding: 0px;
+
+
+}
+#color {
+    background-color: white;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+}
+#SignUp-Main {
+     display: none;
+    width: 60%;
+    margin: auto;
+    position: fixed;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 1;
+     padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    /*background-color: rgb(0,0,0); /* Fallback color */
+    /*background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+
+
+
+}
+
+#SignUp-Main2 {
+    width: 60%;
+    margin: auto;
+    position: fixed;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 1;
+     padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+
+
+
+}
+
+#Login-Main {
+    display: block;
+    margin: auto;
+    position: fixed;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 1;
+     padding-top: 100px; /* Location of the box */
+    padding-left: 30px;
+    padding-right: 30px;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    /*background-color: rgb(0,0,0); /* Fallback color */
+    /*background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+
+
+
+}
+#logo{
+    text-decoration: none;
+    font-size: 25px;
+    color: #FD2B25;
+    margin-left: 10px;
+    position: relative;
+    top: 2px;
+    cursor: default;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    margin-top: 3px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+sixtyPX{
+    display: block;
+    height: 60px;
+    width: 0;
+
+}
+
+fortyPX{
+    display: block;
+    height: 40px;
+    width: 0;
+
+}
+
+twentyPX{
+    display: block;
+    height: 20px;
+    width: 0;
+
+}
+
+
+loginH{
+    font-family: 'Merriweather', serif;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+regtext{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+    color: #979797;
+
+
+}
+
+textBub{
+    max-width: 360px;
+
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 19px;
+    padding-bottom: 11px;
+
+
+}
+
+
+
+
+.facebook-div {
+
+    position: relative;
+    padding-left: 76px;
+}
+
+.google-div {
+
+    position: relative;
+    padding-left: 76px;
+}
+
+.white-text {
+    color: white;
+    position: relative;
+
+}
+
+.pink-text {
+    color: #FB4D58 ;
+    position: relative;
+
+}
+
+.social-icon-login {
+    padding: 0px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    height: 36px;
+}
+
+#register-submit {
+  color: white;
+  background: none;
+  border: none;
+  font-family: 'Josefin Sans', sans-serif;
+  vertical-align: middle;
+  font-size: 20px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+#register-submit:hover {
+  cursor: pointer;
+}
+
+
+ #login {
+   font-family: 'Josefin Sans', sans-serif;
+   color: white;
+   background-color: #FB4D58 ;
+   width: 360px;
+   height: 52px;
+   border-radius: 5px;
+   border-color:#FB4D58 ;
+   border-width: 1px;
+   font-size: 20px;
+ }
+
+#login:hover {
+  cursor: pointer;
+}
+
+
+
+.or-box {
+    max-width: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.chk-box {
+    max-width: 360px;
+    display: flex;
+
+    justify-content: flex-start;
+    margin: auto;
+}
+
+
+
+hr {
+    border: 0;
+    height: 2px;
+    border-radius: 5px;
+    background-color: #979797;
+}
+
+.input-box {
+    border: 1px solid #979797
+}
+
+.input-textbox {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+    color: black;
+    border: 0px;
+    outline: none;
+    width: 100%;
+
+}
+
+::placeholder{
+    color: #979797;
+}
+
+input[type=checkbox] {
+  zoom:1.5;
+}
+
+#remember-chk {
+
+    margin-right: 5px;
+}
+
+
+.submit-box {
+    opacity: 1;
+    background-color: #FB4D58;
+    text-align: center;
+    position: relative;
+}
+
+.signup-box {
+    opacity: 1;
+
+
+    text-align: center;
+    position: relative;
+}
+
+
+
+.submit-button {
+    width: 100%;
+    height: 100%;
+    top:50%;
+    border: 0px;
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+    border-radius: 5px;
+
+    z-index: 1;
+
+}
+
+.btn-hover {
+
+
+    background-color: #FB4D58;
+
+
+}
+
+.signup-btn-hover {
+
+    border: solid 1px #FB4D58;
+
+
+
+}
+
+
+
+#submit-parent button:hover ~.btn-hover{
+    opacity: 1;
+    box-shadow: 0px 5px 10px #979797;
+}
+
+.signup-box button:hover ~.signup-btn-hover {
+    background-color: #FB4D58;
+    box-shadow: 0px 5px 10px #979797;
+}
+
+.signup-box button:hover ~ regtext{
+    color: white;
+}
+
+.facebook-div button:hover ~ .facebook-btn{
+    box-shadow: 0px 5px 10px #979797;
+}
+
+.google-div button:hover ~ .generic-button{
+    box-shadow: 0px 5px 10px #979797;
+}
+
+
+.generic-button {
+    width: 100%;
+    height: 100%;
+    top:50%;
+    opacity: 1;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;
+}
+
+.facebook-btn {
+    background-color: #3C5995;
+
+}
+
+.google-btn {
+    background-color: #518EF8;
+
+}
+
+
+.error-msg {
+  border: solid;
+  border-color: #D20303;
+  border-width: 2px;
+  border-radius: 5px;
+  background-color: #FF6666;
+  margin-bottom: 10px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 20px;
+  color: white;
+  opacity: 50%;
+  font-size: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#confirm-chk {
+  margin-right: 5px;
+}
+
+.chk-box {
+  color: black;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+}

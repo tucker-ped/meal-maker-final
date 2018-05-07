@@ -1,0 +1,193 @@
+#filterText{
+  color: grey;
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#filters{
+  margin-top: 20px;
+}
+
+#dropdownFilters {
+  display: inline-block;
+}
+.dropdownFilter {
+  margin-left: 10px;
+  margin-left: 40px;
+  float: left;
+
+  border: 1px solid #ccc;
+  width: 120px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #fafafa url("../images/dropdownarrow.svg") no-repeat 90% 50%;
+  background-size: 10px;
+}
+
+.dropdownFilter select {
+  padding: 5px 8px;
+  width: 130%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+}
+.dropdownFilter select:focus {
+    outline: none;
+}
+
+#checkbox, #checkbox-pref {
+  margin-left: 10px;
+  margin-left: 40px;
+  float: left;
+  font-family: 'Josefin Sans', sans-serif;
+  margin-bottom: 20px;
+}
+
+#nutritionFilters {
+  display: inline-block;
+}
+.nutritionFilter {
+  display: inline-block;
+  margin-left: 10px;
+  margin-left: 40px;
+  float: left;
+  margin-top: 20px;
+}
+
+#nutritionFilterText{
+  float: left;
+}
+
+.nutritionFilterInput{
+  width: 100px;
+  position: relative;
+  margin-left: 10px;
+
+}
+
+#sugarFilter {
+  margin-top: 1%;
+}
+#fatFilter {
+  margin-top: 1%;
+}
+#caloriesFilter {
+  margin-top: 1%;
+}
+
+#applyFiltersButton{
+  margin-top: 20px;
+  margin-left: 20px;
+  right:10%;
+  top: 200px;
+  height: 40px;
+  border-radius: 10px;
+  width: 70px;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: #FB4D58;
+  border-color: #FB4D58;
+  color: white;
+  lett-spacing: 1px;
+}
+
+
+#lineAfterFilters-container {
+  padding-top: 50px;
+  width: 100%;
+  height:10px;
+}
+#lineAfterFilters{
+  width: 50%;
+  margin: 0 auto;
+  width: 400px;
+  border-top: 1px grey solid;
+}
+
+
+#top10{
+  font-family: 'Josefin Sans', sans-serif;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+
+
+
+
+#resultListContainer{
+  width: 100%; /*can be in percentage also.*/
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+#resultList{
+  width: auto;
+  height: auto;;
+  padding: 0;
+  list-style-type: none;
+}
+
+#resultList li {
+  display:inline-block;
+  *display:inline; /*IE7*/
+  *zoom:1; /*IE7*/
+  margin: 10px;
+}
+
+.resultItem {
+  width: 240px;
+  height: 280px;
+  border: 1px black solid;
+  position: relative;
+}
+
+#resultImage {
+  width: 100%;
+  height: auto;
+}
+
+.resultTitle {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.resultItem:hover {
+  cursor: pointer;
+}
+
+
+.resultItem .resultTitle {
+  position: absolute;
+}
+
+.prepTime {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 100px;
+}
+
+#seeAll{
+  margin-left: 15%;
+  margin-top: 40px;
+  margin-bottom: 20px;
+    width: 70%;
+    height: 30px;
+}
+
+#seeAll2{
+  margin-left: 15%;
+  margin-top: 40px;
+  margin-bottom: 20px;
+    width: 70%;
+    height: 30px;
+}
