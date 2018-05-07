@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta name="loggedin" content="{{isAuthenticated}}">
+
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="../data/css/search-style.css"  type="text/css"/>
+	<link rel="stylesheet" href="../data/css/responsive.css"  type="text/css"/>
+	<link rel="stylesheet" href="../data/css/search.css"  type="text/css"/>
+
+	<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="../socket.io/socket.io.js"></script>
+	<script src='../js/search.js'></script>
+	<meta charset="UTF-8">
+	<title>Searching for Recipes</title>
+</head>
+<body>
+
+	<!-- nav bar -->
+	<div id="nav_bar_container">
+	            <div id="nav_bar">
+	              <div id="logo" class="weather">
+	                <p> MealMaker </p>
+	              </div>
+
+	      <div id="search_bar">
+	        <form id='form'>
+	          <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+          		<label for="search_box" class="hidden">Search for ingredients, recipe names, etc.</label>
+	          <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
+	          <input id="searchSubmitButton" type="submit" value = "Submit">
+	        </form>
+	      </div>
+
+	      <ul class="nav_buttons">
+
+	        {{#notAuthenticated}}
+	        <div id="login-nav-bar" class="text-button">
+	          <li><a href="/login">Login</a></li>
+	        </div>
+
+	        <div id="register" class="text-button">
+	          <li><a href="/register">Register</a></li>
+	        </div>
+	        {{/notAuthenticated}}
+	        {{#isAuthenticated}}
+	        <div id="profileIcon">
+	          <li> <img id="profile_icon" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/></li>
+	        </div>
+	        <div id="logout" class="text-button">
+	          <li><a href="/logout">Log Out</a></li>
+	        </div>
+	        {{/isAuthenticated}}
+	       </ul>
+	        </div>
+	    </div>
+
+	<div style="height: 51px; width: 100%;"></div>
+
+
+<!-- filters -->
+<form id="filters">
+	<p id="filterText">Primary Filters</p>
+	<div id="dropdownFilters">
+		<div class="dropdownFilter">
+
+          <label for="dropdownTime" class="hidden">Optional: Enter maximum time desired to cook meal.</label>
+			<select id="dropdownTime" name="time">
+				<option value="null"> Time to cook... </option>
+				<option value="5"> Less than 5 min </option>
+				<option value="10"> Less than 10 min</option>
+				<option value="30"> Less than 30 min</option>
+				<option value="60"> Less than 1 hr</option>
+				<option value="120"> Less than 2 hr</option>
+			</select>
+		</div>
+
+		<div class="dropdownFilter">
+
+			<label for="dropdownMoney" class="hidden">Optional: Enter maximum amount desired to spend on meal.</label>
+			<select id="dropdownMoney" name="money">
+				<option value="null"> Cost... </option>
+				<option value="10"> Less than $10 </option>
+				<option value="20"> Less than $20</option>
+				<option value="50"> Less than $50</option>
+				<option value="100"> Less than $100</option>
+				<option value="150"> Less than $150</option>
+				<option value="250"> Less than $250</option>
+			</select>
+		</div>
+
+		<div id="checkbox">
+			<input type="checkbox" id="vegetarianCheckbox">
+			<label for="vegetarianCheckbox">Vegetarian</label>
+		</div>
+
+		<div id="checkbox">
+			<input type="checkbox" id="veganCheckbox">
+			<label for="veganCheckbox">Vegan</label>
+		</div>
+
+		<div id="checkbox">
+			<input type="checkbox" id="pescetarianCheckbox">
+			<label for="veganCheckbox">Pescetarian</label>
+		</div>
+
+		<div id="checkbox">
+			<input type="checkbox" id="lactovegetarianCheckbox">
+			<label for="veganCheckbox">Lacto Vegetarian</label>
+		</div>
+
+		<div id="checkbox">
+			<input type="checkbox" id="ovovegetarianCheckbox">
+			<label for="veganCheckbox">Ovo Vegetarian</label>
+		</div>
+
+		<div id="checkbox">
+			<input type="checkbox" id="paleoCheckbox">
+			<label for="veganCheckbox">Paleo</label>
+		</div>
+
+		<div id="checkbox">
+			<input type="checkbox" id="primalCheckbox">
+			<label for="veganCheckbox">Primal</label>
+		</div>
+
+		<div id="checkbox">
+			<input type="checkbox" id="glutenFreeCheckbox">
+			<label for="glutenFreeCheckbox">Gluten Free</label>
+		</div>
+
+		{{#isAuthenticated}}
+		<div id="checkbox-pref">
+			<input id="chk-pref" type="checkbox" name="user-pref"> Use my custom preferences
+		</div>
+		{{/isAuthenticated}}
+
+
+	</div>
+
+	<br>
+
+	<p id="filterText">Nutrition Filters</p>
+
+	<div id="nutritionFilters">
+
+		<div class="nutritionFilter">
+			<div id="nutritionFilterText">
+				<p>Fat:</p>
+			</div>
+			<label for="fatFilter" class="hidden">Optional: Enter maximum desired grams of fat </label>
+			<input id="fatFilter" class="nutritionFilterInput" type="text" name="fat" placeholder="At most (g)...">
+		</div>
+
+		<div class="nutritionFilter">
+			<div id="nutritionFilterText">
+				<p>Calories:</p>
+			</div>
+			<label for="caloriesFilter" class="hidden">Optional: Enter maximum desired number of calories  </label>
+			<input id="caloriesFilter" class="nutritionFilterInput" type="text" name="calories" placeholder="At most (cal)...">
+		</div>
+
+		<div class="nutritionFilter">
+			<div id="nutritionFilterText">
+				<p>Sugar:</p>
+			</div>
+
+          	<label for="sugarFilter" class="hidden">Optional: Enter maximum desired sugar level </label>
+			<input id="sugarFilter" class="nutritionFilterInput" type="text" name="sugar" placeholder="At most (g)...">
+		</div>
+
+		<div class="nutritionFilter">
+			<div id="nutritionFilterText">
+				<p>Protein:</p>
+			</div>
+
+          	<label for="proteinFilter" class="hidden">Optional: Enter maximum desired protein level </label>
+			<input id="proteinFilter" class="nutritionFilterInput" type="text" name="sugar" placeholder="At most (g)...">
+		</div>
+
+		<div class="nutritionFilter">
+			<div id="nutritionFilterText">
+				<p>Carbohydrates:</p>
+			</div>
+
+          	<label for="carbsFilter" class="hidden">Optional: Enter maximum desired carbohydrate level </label>
+			<input id="carbsFilter" class="nutritionFilterInput" type="text" name="sugar" placeholder="At most (g)...">
+		</div>
+
+
+
+	</div>
+
+	<button id="applyFiltersButton" type="Submit">Apply</button>
+</form>
+
+
+<div id="lineAfterFilters-container">
+	<div id="lineAfterFilters"></div>
+</div>
+
+
+<h3 id="top10" style="text-align:center"> Top 10 Results</h3>
+
+<!-- results list -->
+<div id="resultListContainer">
+	<div id="resultListContainer2">
+		<ul id='resultList'></ul>
+	</div>
+</div>
+
+<button id="seeAll">See All Results</button>
+<button id="seeAll2" style="display:none;">See Top 10 Results</button>
+
+</body>
+</html>

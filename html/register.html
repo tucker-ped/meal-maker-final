@@ -1,0 +1,128 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+
+    <link rel="stylesheet" href="../data/css/style.css">
+    <link rel="stylesheet" href="../data/css/responsive.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Merriweather:400,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div id="SignUp-Main2">
+    <div id="color">
+
+  <sixtyPX></sixtyPX>
+  <loginH style="color:black;">Sign Up for Meal Maker</loginH>
+  <twentyPX></twentyPX>
+  <div id="errors">
+    {{#badinput}}
+      {{#errors}}
+        <div class="error-msg">{{msg}}</div>
+      {{/errors}}
+    {{/badinput}}
+  </div>
+  <twentyPx></twentyPX>
+  <regtext>Create Your Account</regtext>
+  <fortyPX></fortyPX>
+
+  <form id="create-account" action="/register" method="post">
+    <textBub class="input-box">
+        <input id="register-email" name="username" type="text" class="input-textbox" placeholder="Username">
+
+    </textBub>
+    <twentyPX></twentyPX>
+    <textBub class="input-box">
+
+        <input id="register-password" name="password" type="password" class="input-textbox" placeholder="Password">
+
+    </textBub>
+
+    <twentyPX></twentyPX>
+    <textBub class="input-box">
+
+        <input id="register-confirm-password" name="confirmPassword" type="password" class="input-textbox" placeholder="Confirm Password">
+
+    </textBub>
+
+    <twentyPX></twentyPX>
+    <div class="chk-box">
+        <input id="confirm-chk" name="terms" type="checkbox" />I agree to Terms and Conditions
+    </div>
+    <twentyPX></twentyPX>
+
+
+    <textBub id="submit-parent" class="submit-box">
+
+        <input id="register-submit" type="submit" value="Create Account"/>
+
+    </textBub>
+  </form>
+  <fortyPX></fortyPX>
+  <div class="or-box">
+      <div style="flex: 1">
+          <hr>
+      </div>
+      <regtext style="flex:0.5">OR</regtext>
+      <div style="flex: 1">
+          <hr>
+      </div>
+  </div>
+  <fortyPX></fortyPX>
+
+  <textBub class="signup-box">
+      <regtext class="white-text"></regtext>
+      <button id="login" class="submit-button">
+
+      </button>
+
+      <div class="generic-button signup-btn-hover"></div>
+      <regtext class="pink-text">Login</regtext>
+
+  </textBub>
+
+  <sixtyPX></sixtyPX>
+
+
+</div>
+      <sixtyPX></sixtyPX>
+
+</div>
+
+<script>
+
+var login = document.getElementById("login");
+
+login.onclick = function() {
+  window.location.assign('/login');
+}
+/*
+var register = document.getElementById("register-submit");
+
+register.onclick = function() {
+  var user = document.getElementById("register-email").value;
+  var pass = document.getElementById("register-password").value;
+  var confirm = document.getElementById("register-confirm-password").value;
+  var agree = document.getElementById("confirm-chk").checked;
+
+  if (agree) {
+    if (confirm == pass) {
+      $.post('/register', {username: user, password: pass});
+    } else {
+      window.alert('Password must match confirmed password');
+    }
+  } else {
+    window.alert('Must agree to Terms');
+  }
+}*/
+</script>
+</body>
+</html>

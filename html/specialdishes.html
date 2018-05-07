@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <link rel="stylesheet" href="../data/css/style.css">
+  <link rel="stylesheet" href="../data/css/responsive.css">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="../data/css/specialdishes.css">
+  <link rel="stylesheet" href="../data/css/search-style.css"  type="text/css"/>
+  <link rel="stylesheet" href="../data/css/responsive.css"  type="text/css"/>
+	<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../socket.io/socket.io.js"></script>
+  <script src='../js/specialdishes.js'></script>
+  <meta charset="UTF-8">
+  <title> MealMaker</title>
+
+
+</head>
+
+
+<body>
+
+<!-- nav bar -->
+<div id="nav_bar_container">
+            <div id="nav_bar">
+              <div id="logo" class="weather">
+                 MealMaker
+              </div>
+
+      <div id="search_bar">
+        <form id='form'>
+          <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+          <label for="search_box" class="hidden">Search for ingredients, recipe names, etc.</label>
+          <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
+          <input id="searchSubmitButton" type="submit" value = "Submit">
+        </form>
+      </div>
+
+      <ul class="nav_buttons">
+
+        {{#notAuthenticated}}
+        <div id="login-nav-bar" class="text-button">
+          <li><a href="/login">Login</a></li>
+        </div>
+
+        <div id="register" class="text-button">
+          <li><a href="/register">Register</a></li>
+        </div>
+        {{/notAuthenticated}}
+        {{#isAuthenticated}}
+        <div id="profileIcon">
+          <li> <img id="profile_icon" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/></li>
+        </div>
+        <div id="logout" class="text-button">
+          <li><a href="/logout">Log Out</a></li>
+        </div>
+        {{/isAuthenticated}}
+       </ul>
+        </div>
+    </div>
+
+<div style="height: 51px; width: 100%;"></div>
+
+<!-- dinners for the week block -->
+<div id="dinnerFTW-container">
+  <div class="slideshow-container">
+
+    <div class="mySlides">
+      <img  onclick="image1()" alt="Exemplary Thanksgiving Dinner" id="dinnerFTWpic" class="dinnerFTWpic1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1200px-Good_Food_Display_-_NCI_Visuals_Online.jpg" style="width: 100%">
+    </div>
+
+    <div class="mySlides">
+      <img onclick="image2()" alt="Chinese Food Display" id="dinnerFTWpic" class="dinnerFTWpic2" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_16x9/public/521724-istock-545286388.jpg?itok=AF_X9rNF&resize=1100x619" width=100%>
+
+    </div>
+
+    <div class="mySlides">
+      <img onclick="image3()" alt="chicken and broccoli" id="dinnerFTWpic" class="dinnerFTWpic3" src="http://i2.cdn.turner.com/money/dam/assets/141224105650-chinese-food-xmas-1024x576.jpg"  width=100%>
+    </div>
+
+    <div id="dinnerFTWtext-container">
+      <h1 id="dinnerFTWtitle">Welcome to MealMaker!</h1>
+      <h3 id="dinnerFTWtext">From the beginner cook to the experienced chef, MealMaker will guide you to making your
+      best meal yet! Search for any food you desire, and MealMaker will find recipes that fit your specific
+      dietary needs.  </h3>
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  </div>
+</div>
+
+
+<!-- ingredient of the day -->
+<div id="seasonal-container-all">
+  <div id="seasonal-container">
+    <!-- title of season(al) recipes -->
+    <div id="seasonal-title-container">
+        <h1 id="seasonal-title"> Ingredient of the Day: Shrimp! </h2>
+    </div>
+    <!-- main dishes -->
+    <div id="main-dishes-container">
+      <div id="main-dishes">
+        <ul id="main-dishes-list">
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+var slideIndex = 1;
+
+$(document).ready(function() {
+  var height = $(window).height();
+  var width = $(window).width();
+  $('#dinnerFTW-container').css({'height': width * .5});
+  $('.dinnerFTWpic' + slideIndex).css({'height': width * .5});
+});
+
+$(window).resize(function() {
+  var height = $(window).height();
+  var width = $(window).width();
+  $('#dinnerFTW-container').css({'height': width * .5});
+  $('.dinnerFTWpic' + slideIndex).css({'height': width * .5});
+});
+
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  if(slideIndex == 1 && n == -1){
+    console.log("hey");
+    applyImageDim(2);
+  }
+  else{
+    applyImageDim(n);
+  }
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+}
+
+function applyImageDim(n){
+  var height = $(window).height();
+  var width = $(window).width();
+  a = slideIndex + n;
+  $('#dinnerFTW-container').css({'height': width * .5});
+  $('.dinnerFTWpic' + a).css({'height': width * .5});
+}
+
+// Get the modal
+var loadmodal = document.getElementById('Login-Main');
+
+var createmodal = document.getElementById('SignUp-Main');
+
+ $( window ).on( "load", function() {
+       loadmodal.style.display = "block";
+    });
+// // Get the <span> element that closes the modal
+// var loadspan = document.getElementsByClassName("close")[0];
+
+// var createspan = document.getElementById("createspan");
+
+// var signup = document.getElementById("sign_up");
+
+// signup.onclick = function(){
+//    loadmodal.style.display = "none";
+//    createmodal.style.display = "block";
+
+// }
+
+// createspan.onclick = function(){
+//    createmodal.style.display = "none";
+// }
+// // When the user clicks on <span> (x), close the modal
+// loadspan.onclick = function() {
+//     loadmodal.style.display = "none";
+
+// }
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var createspan = document.getElementsByClassName("close")[1];
+
+var signup = document.getElementById("sign_up");
+var createToLog = document.getElementById("create_to_log");
+var login = document.getElementById("login-submit");
+var register = document.getElementById("register-submit");
+
+// handles login
+login.onclick = function() {
+  console.log("login");
+  var user = document.getElementById("email").value;
+  var pass = document.getElementById("password").value;
+
+  console.log(user);
+  console.log(pass);
+
+  $.post('/login', {username: user, password: pass});
+}
+
+// handles registration
+register.onclick = function() {
+  console.log("register");
+  var user = document.getElementById("register-email").value;
+  var pass = document.getElementById("register-password").value;
+  var confirm = document.getElementById("register-confirm-password").value;
+  var agree = document.getElementById("confirm-chk").checked;
+
+  console.log(user);
+  console.log(pass);
+  console.log(confirm);
+  console.log(agree);
+
+  if (agree) {
+    if (confirm == pass) {
+      $.post('/register', {username: user, password: pass});
+    } else {
+      window.alert('Password must match confirmed password');
+    }
+  } else {
+    window.alert('Must agree to Terms');
+  }
+
+};
+
+signup.onclick = function(){
+   loadmodal.style.display = "none";
+   createmodal.style.display = "block";
+
+}
+createToLog.onclick = function(){
+    createmodal.style.display = "none";
+   loadmodal.style.display = "block";
+
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    loadmodal.style.display = "none";
+      createmodal.style.display = "none";
+}
+
+// When the user clicks on <span> (x), close the modal
+createspan.onclick = function() {
+    // loadmodal.style.display = "none";
+      createmodal.style.display = "none";
+}
+</script>
+</body>
+</html>

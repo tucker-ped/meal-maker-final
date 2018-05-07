@@ -1,0 +1,103 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+
+    <link rel="stylesheet" href="../data/css/style.css">
+    <link rel="stylesheet" href="../data/css/responsive.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Merriweather:400,700" rel="stylesheet">
+    <script src='../js/login.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+    <!--temporary block-->
+    <!--temporary block-->
+
+
+    <div id="Login-Main">
+
+        <sixtyPX></sixtyPX>
+        <loginH>Welcome To Meal Maker</loginH>
+        <twentyPX></twentyPX>
+        <regtext>Login to Meal Maker</regtext>
+        <fortyPX></fortyPX>
+
+        <fortyPX></fortyPX>
+        <form id="login-user" action="/login" method="post">
+        <textBub class="input-box">
+            <input type="text" name="username" class="input-textbox" placeholder="Username">
+
+        </textBub>
+        <twentyPX></twentyPX>
+        <textBub class="input-box">
+
+            <input type="password" name="password" class="input-textbox" placeholder="Password">
+
+        </textBub>
+        <twentyPX></twentyPX>
+
+        <twentyPX></twentyPX>
+            <input id="login" type="submit" value="Login"/>
+        </form>
+        <fortyPX></fortyPX>
+        <div class="or-box">
+            <div style="flex: 1">
+                <hr>
+            </div>
+            <regtext style="flex:0.5">OR</regtext>
+            <div style="flex: 1">
+                <hr>
+            </div>
+        </div>
+        <fortyPX></fortyPX>
+
+        <textBub class="signup-box">
+            <regtext class="white-text"></regtext>
+            <button id="register" class="submit-button">
+
+            </button>
+
+            <div class="generic-button signup-btn-hover"></div>
+            <regtext class="pink-text">Sign Up</regtext>
+
+        </textBub>
+
+        <sixtyPX></sixtyPX>
+
+    </div>
+
+<script>
+/*
+var login = document.getElementById("login");
+
+login.onclick = function() {
+  console.log("login");
+  var user = document.getElementById("user").value;
+  var pass = document.getElementById("pass").value;
+
+  console.log(user);
+  console.log(pass);
+
+  $.post('/login', {username: user, password: pass}, function(err, res) {
+    console.log(res);
+  });
+}*/
+
+var register = document.getElementById("register");
+
+register.onclick = function() {
+  window.location.assign('/register');
+}
+</script>
+
+</body>
+</html>

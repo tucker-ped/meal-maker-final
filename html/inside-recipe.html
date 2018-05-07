@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="id" content="{{id}}">
+		<title>{{RecipeName}}</title>
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../data/css/search-style.css">
+		<link rel="stylesheet" type="text/css" href="../data/css/inside-recipe.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="../socket.io/socket.io.js"></script>
+		<script src='../js/specialdishes.js'></script>
+		<script src='../js/inside-recipe.js'></script>
+	</head>
+	<body>
+
+		<!-- nav bar -->
+		<div id="nav_bar_container">
+		            <div id="nav_bar">
+		              <div id="logo" class="weather">
+		                <p> MealMaker </p>
+		              </div>
+
+		      <div id="search_bar">
+		        <form id='form'>
+		          <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+		          <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
+		          <input id="searchSubmitButton" type="submit" value = "Submit">
+		        </form>
+		      </div>
+
+		      <ul class="nav_buttons">
+
+		        {{#notAuthenticated}}
+		        <div id="login-nav-bar" class="text-button">
+		          <li><a href="/login">Login</a></li>
+		        </div>
+
+		        <div id="register" class="text-button">
+		          <li><a href="/register">Register</a></li>
+		        </div>
+		        {{/notAuthenticated}}
+		        {{#isAuthenticated}}
+		        <div id="profileIcon">
+		          <li> <img id="profile_icon" alt="user's image" src="../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/></li>
+		        </div>
+		        <div id="logout" class="text-button">
+		          <li><a href="/logout">Log Out</a></li>
+		        </div>
+		        {{/isAuthenticated}}
+		       </ul>
+		        </div>
+		    </div>
+
+  	<div style="height: 51px; width: 100%;"></div>
+
+
+
+		<div id="other-stuff">
+			{{#isAuthenticated}}
+			<div id="collect-recipe">
+				<button id="add-fav">ADD RECIPE TO FAVORITES</button>
+			</div>
+			{{/isAuthenticated}}
+			<h1 id="recipe-name">{{RecipeName}}</h1>
+			<div id="recipe-image">
+				<img src="{{Img}}" />
+			</div>
+			<div id="quick-info">
+				<div class="info">
+					<h3>{{Min}}</h3>
+					<p>MINUTES</p>
+				</div>
+				<div class="info">
+					<h3>{{Diff}}</h3>
+					<p>DIFFICULTY</p>
+				</div>
+				<div class="info">
+					<h3>{{TotIng}}</h3>
+					<p>TOTAL INGREDIENTS</p>
+				</div>
+				<div class="info">
+					<h3>{{Serv}}</h3>
+					<p>SERVINGS</p>
+				</div>
+			</div>
+			<hr id="info-border"></hr>
+			<div id="specs">
+				<div id="ingredients">
+					<h3>INGREDIENTS</h3>
+					<ul id="ingredient-list">
+					</ul>
+				</div>
+				<div id="prep-value">
+					<div id="prep">
+						<h3>PREPARATION</h3>
+						<ul id="prep-list">
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	<script>
+		var fav = document.getElementById("add-fav");
+
+		fav.onclick = function() {
+			$.post('/fav/{{id}}', {image: "{{Img}}}", title: "{{RecipeName}}"}, function(err, res) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(res);
+				}
+			});
+		}
+	</script>
+	</body>
+</html>

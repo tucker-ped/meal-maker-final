@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="user" content="{{profile}}">
+
+ 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,900" rel="stylesheet">
+
+	<link rel="stylesheet" href="../data/css/profile-style.css"  type="text/css"/>
+    <link rel="stylesheet" href="../data/css/style.css"  type="text/css"/>
+		<link rel="stylesheet" href="../data/css/search-style.css"  type="text/css"/>
+    <link rel="stylesheet" href="../data/css/responsive.css"  type="text/css"/>
+		<script src="../socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="../js/profile.js"> </script>
+	<script type="text/javascript" src="../js/specialdishes.js"> </script>
+
+	</head>
+	<body>
+
+
+		<!-- nav bar -->
+		<div id="nav_bar_container">
+		            <div id="nav_bar">
+		              <div id="logo" class="weather">
+		                MealMaker
+		              </div>
+
+		      <div id="search_bar">
+		        <form id='form'>
+		          <img id="search_icon" alt="search button" src="../data/images/search_icon.png"/>
+          			<label for="search_box" class="hidden">Search for ingredients, recipe names, etc.</label>
+		          <input id="search_box" type="text" placeholder="Search for ingredients, recipe names...">
+		          <input id="searchSubmitButton" type="submit" value = "Submit">
+		        </form>
+		      </div>
+
+		      <ul class="nav_buttons">
+
+		        {{#notAuthenticated}}
+		        <div id="login" class="text-button">
+		          <li><a href="/login">Login</a></li>
+		        </div>
+
+		        <div id="register" class="text-button">
+		          <li><a href="/register">Register</a></li>
+		        </div>
+		        {{/notAuthenticated}}
+		        {{#isAuthenticated}}
+		        <div id="profileIcon">
+		          <li> <img id="profile_icon" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/></li>
+		        </div>
+		        <div id="logout" class="text-button">
+		          <li><a href="/logout">Log Out</a></li>
+		        </div>
+		        {{/isAuthenticated}}
+		       </ul>
+		        </div>
+		    </div>
+
+		<div style="height: 51px; width: 100%;"></div>
+
+        <div id="profile-main">
+        <sixtyPX></sixtyPX>
+        <div id="edits" >
+        	<a id="edit_text">Edit Profile</a>
+
+
+
+        	<img id="edit_icon" alt="edit profile image" src="../data/images/edit_icon.png"/>
+        </div>
+
+		<h1 id="profile_title"> {{user}}'s Profile</h1>
+
+
+
+		<div id="full_cover">
+			<div id="cropped"><img id="profile_photo" alt="user's image" src= "../data/profile_images/{{profile}}.png" onerror="this.src='../data/images/default-user.png'"/>
+			</div>
+				<div class= "editing" >
+					 <form id="frmUploader" enctype="multipart/form-data" action="/uploadprofile/" method="post">
+					 	<div class="upload-btn-wrapper">
+  						<button class="editbtn">Change Profile Picture</button>
+
+					  	<input type="file" name="imgUploader" multiple />
+					  	</div>
+
+					   <button class="savebtn">Save</button>
+
+
+		    		</form>
+
+			</div>
+			<!-- javascript for user's image -->
+			<h2 id="last_updated"> <span id="date"> </span> </h2>
+			<div id="cropped"> <img id="cover_photo" alt="user's cover photo" src="../data/cover_photos/{{profile}}.png" onerror="this.src='../data/images/crepes.jpg'"/></div>
+				<div class= "editing" >
+					 <form id="frmUploader" enctype="multipart/form-data" action="/uploadcover/" method="post">
+					 	<div class="upload-btn-wrapper">
+  						<button class="editbtn">Change Cover Photo</button>
+					  	<input type="file" name="imgUploader" multiple />
+					  	</div>
+
+					   <button class="savebtn">Save</button>
+
+
+		    		</form>
+
+			</div>
+
+			<!-- javascript for date -->
+
+
+		</div>
+
+        <fortyPX></fortyPX>
+
+
+				<div id="dietary">
+					<h4 id="diet_title"> Dietary Preferences </h4>
+
+
+
+					<img id="edit_icon" onclick="toggleEdit()" alt="edit dietary preferences" src="../data/images/edit_icon.png">
+
+								<twentyPX></twentyPX>
+
+					<!-- javascript for adding more dietary options -->
+					<div id="chosen-preferences" >
+						<ul id="chosen-list"></ul>
+						<div id="established-intolerances">
+						</div>
+					</div>
+					<div id="edit-preferences">
+						<ul id="edit-list">
+							<li>Pescetarian
+								<img id="close-icon" onclick="removeDiet('pesc')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('pesc')" src="../data/images/add_icon.png">
+							</li>
+							<li>Lacto Vegetarian
+								<img id="close-icon" onclick="removeDiet('lactoveg')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('lactoveg')" src="../data/images/add_icon.png">
+							</li>
+							<li>Ovo Vegetarian
+								<img id="close-icon" onclick="removeDiet('ovoveg')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('ovoveg')" src="../data/images/add_icon.png">
+							</li>
+							<li>Vegetarian
+								<img id="close-icon" onclick="removeDiet('vegetarian')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('vegetarian')" src="../data/images/add_icon.png">
+							</li>
+							<li>Vegan
+								<img id="close-icon" onclick="removeDiet('vegan')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('vegan')" src="../data/images/add_icon.png">
+							</li>
+							<li>Paleo
+								<img id="close-icon" onclick="removeDiet('paleo')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('paleo')" src="../data/images/add_icon.png">
+							</li>
+							<li>Primal
+								<img id="close-icon" onclick="removeDiet('primal')" src="../data/images/close_icon.png">
+								<img id="add-icon" onclick="submitDiet('primal')" src="../data/images/add_icon.png">
+							</li>
+						</ul>
+						<div id="intolerances">
+							<input type="text" id="intolerances-field" placeholder="Intolerances" />
+							<button id="intolerances-submit" onclick="submitIntolerances()">submit</button>
+							<p>Note: intolerances can include: dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat</p>
+						</div>
+					</div>
+
+
+				</div>
+
+						<fortyPX></fortyPX>
+
+				<div id="favorites">
+
+						<h4 id="fav_title"> Favorite Dishes</h4>
+
+					<!-- javascript for favorite dish info  -->
+					<ul id="fav_list">
+					</ul>
+				</div>
+						</div>
+
+        <script>
+
+
+
+        	var showedits=	document.getElementsByClassName("editing");
+
+        	var edittext = document.getElementById("edit_text");
+        	var forms = document.getElementById("frmUploader");
+
+				var date = 	document.getElementById("date");
+
+		const compliments =["You look great day!", "Hope you are enjoying your day!", "What a great time to make a meal!", "Cooking is an art.", "When cooking, go by your own taste.", "Isn't food just the best!", "Eating with friends is time well spent", "If there's a whisk, there's a way.", "People who love to eat are always the best people.", "Nothing brings people together like good food.", "Worries go down better with soup.", "Good food is good mood.", "Good food is wise medicine.", "Life is a combination of passion + pasta", "Breakfast is the most important meal of the day!", "Life is uncertain; eat dessert first!" ];
+
+
+			$("#edits").click(function(){
+				forms.style.display = "block";
+
+				if($(edittext).text() === "Edit Profile"){
+					for (var i=0; i<showedits.length;i++){
+	    				showedits[i].style.display='inline-block';
+					}
+					$(edittext).text( "Done Editing");
+					$(date).text("updating profile . . .");
+
+				} else {					for (var i=0; i<showedits.length;i++){
+	    				showedits[i].style.display='none';
+					}
+					$(edittext).text( "Edit Profile");
+					var comp = compliments[Math.floor(Math.random()*compliments.length)];
+
+					$(date).text(comp);
+
+
+				}
+
+
+			});
+        </script>
+
+	</body>
+</html>
